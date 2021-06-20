@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-sm-12" >
+ <mat-dialog-content class="mat-typography">
+    <h1 mat-dialog-title>Login</h1>
+    <div mat-dialog-content>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Username</mat-label>
+                <input matInput placeholder="Please enter your username">
+                <mat-icon matSuffix>alternate_email</mat-icon>
+               </mat-form-field>
+          </p> 
+          <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+            </p> 
+    
+    </div>
+     
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Login</button>
+</mat-dialog-actions>
+
+    </div>
+</div>
