@@ -17,12 +17,26 @@ module.exports = (sequelize, Sequelize) => {
         defaultValue:'Pending'
       },
       Company_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { 
+          model: 'CompanyTbs',
+          key: 'Company_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE', 
       },
       Resource_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { 
+          model: 'ResourceTbs',
+          key: 'Resource_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE', 
       } 
-    });
+    }); 
   
     return Documents;
   };

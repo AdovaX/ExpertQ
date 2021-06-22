@@ -6,10 +6,24 @@ module.exports = (sequelize, Sequelize) => {
         autoIncrement: true
       },
       Company_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { 
+          model: 'CompanyTbs',
+          key: 'Company_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       User_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { 
+          model: 'UsersTbs',
+          key: 'User_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE', 
       },
       Title: {
         type: Sequelize.STRING

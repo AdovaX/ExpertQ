@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Roles = sequelize.define("RolesTb", {
+    const Roles = sequelize.define("RolesTbs", {
         Roles_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -10,12 +10,26 @@ module.exports = (sequelize, Sequelize) => {
       },
       Role_duration: {
         type: Sequelize.INTEGER
-      },
+      }, 
+      Company_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { 
+          model: 'CompanyTbs',
+          key: 'Company_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      } , 
       Resource_id: {
-        type: Sequelize.INTEGER
-      },
-      Role_company: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { 
+          model: 'ResourceTbs',
+          key: 'Resource_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       } 
     });
   

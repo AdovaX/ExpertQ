@@ -9,10 +9,24 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       Payer_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { 
+          model: 'UsersTbs',
+          key: 'User_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       Requirement_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { 
+          model: 'RequirementsTbs',
+          key: 'Requirement_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       Total_amount: {
         type: Sequelize.DOUBLE
@@ -26,7 +40,14 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.DATEONLY
       } ,
       Recipient_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { 
+          model: 'CompanyTbs',
+          key: 'Company_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       } ,
       Discounted_amount: {
         type: Sequelize.DOUBLE

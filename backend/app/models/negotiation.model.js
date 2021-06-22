@@ -6,10 +6,24 @@ module.exports = (sequelize, Sequelize) => {
         autoIncrement: true
       },
       Sender_id: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { 
+          model: 'UsersTbs',
+          key: 'User_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       Reciver_id: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { 
+          model: 'UsersTbs',
+          key: 'User_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       Status: {
         type: Sequelize.ENUM,

@@ -1,12 +1,19 @@
 module.exports = (sequelize, Sequelize) => {
-    const Requirement = sequelize.define("RequirementsTb", {
+    const Requirement = sequelize.define("RequirementsTbs", {
         Requirement_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
       },
       Company_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { 
+          model: 'CompanyTbs',
+          key: 'Company_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE', 
       },
       Week_duration: {
         type: Sequelize.INTEGER
@@ -15,16 +22,44 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.INTEGER
       } ,
       Technology_id: {
-        type: Sequelize.INTEGER 
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { 
+          model: 'TechnologyTbs',
+          key: 'Technology_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE', 
       } ,
       Domain_id: {
-        type: Sequelize.INTEGER, 
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { 
+          model: 'DomainTbs',
+          key: 'Domain_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',  
       } ,
-      Role: {
-        type: Sequelize.INTEGER, 
+      Roles_id: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { 
+          model: 'RolesTbs',
+          key: 'Roles_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE', 
       } ,
       Certification: {
-        type: Sequelize.STRING, 
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { 
+          model: 'EducationTbs',
+          key: 'Education_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE', 
       } ,
       Hours_per_week: {
         type: Sequelize.INTEGER, 
@@ -42,7 +77,14 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING, 
       } ,
       Project_id: {
-        type: Sequelize.INTEGER, 
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { 
+          model: 'ProjectsTbs',
+          key: 'Project_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       } ,
       Requirements_description: {
         type: Sequelize.TEXT, 

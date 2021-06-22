@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const CompanyTb = sequelize.define("CompanyTb", {
+    const CompanyTb = sequelize.define("CompanyTbs", {
         Company_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -19,10 +19,7 @@ module.exports = (sequelize, Sequelize) => {
       },
       Founded: {
         type: Sequelize.DATEONLY
-      },
-      Tier_id: {
-        type: Sequelize.INTEGER
-      },
+      }, 
       About: {
         type: Sequelize.TEXT
       },

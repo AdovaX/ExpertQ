@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
-    const Experince = sequelize.define("ExperinceTbs", {
-        Experience_id: {
+    const ResourceSkill = sequelize.define("ResourceSkillTbs", {
+        Resource_skill_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
@@ -15,24 +15,19 @@ module.exports = (sequelize, Sequelize) => {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-      Company_name: {
-        type: Sequelize.INTEGER
-      },
-      Year_of_joining: {
-        type: Sequelize.INTEGER
-      },
-      Roles_id: {
+      Technology_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { 
-          model: 'RolesTbs',
-          key: 'Roles_id'
+          model: 'TechnologyTbs',
+          key: 'Technology_id'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
-      } 
+      }
     });
   
-    return Experince;
+    return ResourceSkill;
   };
   
+

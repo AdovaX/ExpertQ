@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Technology = sequelize.define("TechnologyTb", {
+    const Technology = sequelize.define("TechnologyTbs", {
         Technology_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -12,7 +12,14 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       Technology_category_id: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { 
+          model: 'TechnologyCategoryTbs',
+          key: 'Technology_category_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE', 
       },
       Technology_version: {
         type: Sequelize.STRING

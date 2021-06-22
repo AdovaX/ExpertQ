@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Project = sequelize.define("ProjectsTb", {
+    const Project = sequelize.define("ProjectsTbs", {
         Project_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -24,8 +24,15 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.INTEGER
       } ,
       Company_id: {
-        type: Sequelize.DOUBLE
-      } ,
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { 
+          model: 'CompanyTbs',
+          key: 'Company_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE', 
+      },
       Need_remote: {
         type: Sequelize.ENUM,
         values : ['YES' , 'NO'],

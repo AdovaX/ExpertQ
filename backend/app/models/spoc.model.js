@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Spoc = sequelize.define("SpocTb", {
+    const Spoc = sequelize.define("SpocTbs", {
         Spoc_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -18,7 +18,14 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       Company_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { 
+          model: 'CompanyTbs',
+          key: 'Company_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE', 
       },
       Spoc_status: {
         type: Sequelize.ENUM,

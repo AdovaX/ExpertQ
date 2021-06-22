@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Bank = sequelize.define("BankDetailsTb", {
+    const Bank = sequelize.define("BankDetailsTbs", {
         Bank_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -21,10 +21,24 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       Company_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { 
+          model: 'CompanyTbs',
+          key: 'Company_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       Spoc_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { 
+          model: 'SpocTbs',
+          key: 'Spoc_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
        } 
     });
   

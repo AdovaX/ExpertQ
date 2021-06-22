@@ -1,12 +1,19 @@
 module.exports = (sequelize, Sequelize) => {
-    const Education = sequelize.define("EducationTb", {
+    const Education = sequelize.define("EducationTbs", {
         Education_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
       },
       Resource_id: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { 
+          model: 'UsersTbs',
+          key: 'User_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       Qualification: {
         type: Sequelize.STRING
@@ -18,27 +25,32 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       Technology_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { 
+          model: 'TechnologyTbs',
+          key: 'Technology_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       Expertaise_level: {
         type: Sequelize.INTEGER
       },
       Domain_id: {
-        type: Sequelize.INTEGER
-      },
-      Roles_id: {
-        type: Sequelize.INTEGER
-      },
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { 
+          model: 'DomainTbs',
+          key: 'Domain_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      }, 
       Category: {
         type: Sequelize.ENUM,
         values : ['Degree' , 'Master' , 'Certificate'],
         defaultValue : 'Degree'
-      },
-      Resume: {
-        type: Sequelize.STRING
-      },
-      Intro_video: {
-        type: Sequelize.STRING
       }
     });
   

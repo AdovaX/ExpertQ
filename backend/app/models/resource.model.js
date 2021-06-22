@@ -1,20 +1,31 @@
 module.exports = (sequelize, Sequelize) => {
-    const Resource = sequelize.define("ResourceTb", {
+    const Resource = sequelize.define("ResourceTbs", {
         Resource_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
       },
       User_roles_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { 
+          model: 'UserRolesTbs',
+          key: 'User_roles_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       Company_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { 
+          model: 'CompanyTbs',
+          key: 'Company_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       Name: {
-        type: Sequelize.STRING
-      },
-      Position: {
         type: Sequelize.STRING
       },
       Experience: {
@@ -58,8 +69,21 @@ module.exports = (sequelize, Sequelize) => {
         defaultValue : 'FULL'
       },
       User_id: {
-        type: Sequelize.INTEGER
-      } 
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { 
+          model: 'UsersTbs',
+          key: 'User_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      } ,
+      Resume: {
+        type: Sequelize.STRING
+      },
+      Intro_video: {
+        type: Sequelize.STRING
+      }
     });
   
     return Resource;

@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Contractor = sequelize.define("ContractOwnerTb", {
+    const Contractor = sequelize.define("ContractOwnerTbs", {
         Contract_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -18,8 +18,15 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       Company_id: {
-        type: Sequelize.INTEGER
-      } 
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { 
+          model: 'CompanyTbs',
+          key: 'Company_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE', 
+      }
     });
   
     return Contractor;

@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Domain = sequelize.define("DomainTb", {
+    const Domain = sequelize.define("DomainTbs", {
         Domain_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
