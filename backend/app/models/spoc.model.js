@@ -29,7 +29,8 @@ module.exports = (sequelize, Sequelize) => {
       },
       Spoc_status: {
         type: Sequelize.ENUM,
-        values:['PENDING', 'VERIFIED', 'NONVERIFIED']
+        values:['PENDING', 'VERIFIED', 'NONVERIFIED'],
+        defaultValue : 'PENDING'
       }
     });
   

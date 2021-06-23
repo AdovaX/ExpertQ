@@ -1,11 +1,11 @@
 const db = require("../models");
-const Tutorial = db.spoc;
+const spocTb = db.spocTb;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Tutorial
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.title) {
+    if (!req.body.Spoc_name) {
       res.status(400).send({
         message: "Content can not be empty!"
       });
@@ -13,14 +13,16 @@ exports.create = (req, res) => {
     }
   
     // Create a Tutorial
-    const tutorial = {
-      title: req.body.title,
-      description: req.body.description,
-      published: req.body.published ? req.body.published : false
+    const spocData = {
+      Spoc_name: req.body.Spoc_name,
+      Spoc_email: req.body.Spoc_email,
+      Spoc_designation: req.body.Spoc_designation,
+      Spoc_phone: req.body.Spoc_phone,
+      Company_id: req.body.Company_id, 
     };
   
     // Save Tutorial in the database
-    Tutorial.create(tutorial)
+    spocTb.create(spocData)
       .then(data => {
         res.send(data);
       })
@@ -30,4 +32,4 @@ exports.create = (req, res) => {
             err.message || "Some error occurred while creating the Tutorial."
         });
       });
-  }; 
+  };  

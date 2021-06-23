@@ -1,11 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-require("./app/routes/turorial.routes")(app);
 
  
 const db = require("./app/models");
-db.sequelize.sync({force: true});
+//db.sequelize.sync({force: true});
 //db.sequelize.sync();
 var corsOptions = {
   origin: "http://localhost:8080"
@@ -24,6 +23,8 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to Expert Q application." });
 });
 
+require("./app/routes/company.routes")(app);
+require("./app/routes/spoc.routes")(app);
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
