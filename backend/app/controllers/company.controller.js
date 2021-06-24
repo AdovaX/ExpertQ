@@ -4,7 +4,7 @@ const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.C_short_name) {
+    if (!req.body.Company_email) {
       res.status(400).send({
         message: "Content can not be empty!"
       });
@@ -14,6 +14,8 @@ exports.create = (req, res) => {
      const companyData = {
         C_short_name: req.body.C_short_name,
         C_full_name: req.body.C_full_name,
+        Company_email: req.body.Company_email,
+        Company_password: req.body.Company_password,
         Website: req.body.Website,
         No_employees: req.body.No_employees,
         Founded: req.body.Founded, 

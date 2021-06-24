@@ -11,6 +11,12 @@ module.exports = (sequelize, Sequelize) => {
       C_full_name: {
         type: Sequelize.STRING
       },
+      Company_email: {
+        type: Sequelize.STRING
+      },
+      Company_password: {
+        type: Sequelize.STRING
+      },
       Website: {
         type: Sequelize.STRING
       },
