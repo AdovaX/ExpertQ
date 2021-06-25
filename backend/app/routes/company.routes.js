@@ -9,6 +9,7 @@ module.exports = app => {
     router.get("/searchbyid/:Company_id", company.findOne); 
     router.put("/update/:Company_id", company.update); 
     router.delete("/delete/:Company_id", company.delete); 
+    router.post("/login", company.login); 
   
     //app.use('/spoc/signup', router);
     app.use('/company', router);

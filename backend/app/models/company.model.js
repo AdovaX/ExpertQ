@@ -9,13 +9,17 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       C_full_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       Company_email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
       },
       Company_password: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT,
+        allowNull: false,
       },
       Website: {
         type: Sequelize.STRING

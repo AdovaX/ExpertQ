@@ -11,10 +11,18 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import { PasswordresetComponent } from './passwordreset/passwordreset.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {MatMenuModule} from '@angular/material/menu';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import { DatacardsComponent } from './datacards/datacards.component'; 
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
-  declarations: [LoginComponent, RegistrationComponent, SuccessloginComponent, PasswordresetComponent],
-  imports: [
+  declarations: [LoginComponent, RegistrationComponent, SuccessloginComponent, PasswordresetComponent, DashboardComponent, DatacardsComponent],
+  imports: [ 
     CommonModule, 
     CompanyRoutingModule, 
     ReactiveFormsModule,
@@ -22,7 +30,13 @@ import { PasswordresetComponent } from './passwordreset/passwordreset.component'
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    FlexLayoutModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatTableModule
 
   ]
 })

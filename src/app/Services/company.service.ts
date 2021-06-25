@@ -36,5 +36,8 @@ export class CompanyService {
 insertCompany(company): Observable<Company[]>{
   return this.http.post<Company[]>(this.REST_API_SERVER + '/company/signup/', company);
 }  
+companyLogin(company): Observable<Company[]>{
+  return this.http.post<Company[]>(this.REST_API_SERVER + '/company/login/', company);
+}  
 
 }

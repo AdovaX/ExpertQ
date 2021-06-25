@@ -1,3 +1,7 @@
 body{
     width: 100%;
 }
+.error_msg{
+    color: red; 
+    font-weight: bold;
+}

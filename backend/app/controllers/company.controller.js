@@ -1,7 +1,7 @@
 const db = require("../models");
 const companyTb = db.companyTb;
 const Op = db.Sequelize.Op;
-
+ 
 exports.create = (req, res) => {
     // Validate request
     if (!req.body.Company_email) {
@@ -9,13 +9,12 @@ exports.create = (req, res) => {
         message: "Content can not be empty!"
       });
       return;
-    }
-  
+    } 
      const companyData = {
         C_short_name: req.body.C_short_name,
         C_full_name: req.body.C_full_name,
         Company_email: req.body.Company_email,
-        Company_password: req.body.Company_password,
+        Company_password:req.body.Company_password ,
         Website: req.body.Website,
         No_employees: req.body.No_employees,
         Founded: req.body.Founded, 
@@ -34,6 +33,7 @@ exports.create = (req, res) => {
         });
       });
   };  
+     
   exports.findAll = (req, res) => {
     
     companyTb.findAll()
@@ -106,3 +106,17 @@ exports.create = (req, res) => {
         });
       });
   };
+  exports.login = (req, res) => { 
+    companyTb.findAll({where : {Company_email:req.body.Company_email,Company_password:req.body.Company_password}})
+      .then(data => {
+        res.send(data);
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving tutorials."
+        });
+      });
+  };
+
+  
