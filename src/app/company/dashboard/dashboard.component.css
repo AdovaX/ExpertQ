@@ -69,4 +69,8 @@
     height: 100%;
     position: relative;
   }
-   
+  .dashboard_icon{
+    position: relative;
+    top: 5px;
+    color: black;
+  }
