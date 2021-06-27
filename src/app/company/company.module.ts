@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RecaptchaModule } from "ng-recaptcha";
 import { ReactiveFormsModule} from '@angular/forms' 
 import { CompanyRoutingModule } from './company-routing.module';
 import { LoginComponent } from './login/login.component';
@@ -24,6 +25,7 @@ import {MatTableModule} from '@angular/material/table';
   declarations: [LoginComponent, RegistrationComponent, SuccessloginComponent, PasswordresetComponent, DashboardComponent, DatacardsComponent],
   imports: [ 
     CommonModule, 
+    RecaptchaModule,
     CompanyRoutingModule, 
     ReactiveFormsModule,
     MatDialogModule,

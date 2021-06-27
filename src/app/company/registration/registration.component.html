@@ -23,6 +23,10 @@
           <label for="psw"><b>Password</b></label>
           <input type="password" formControlName="Company_password" placeholder="Enter Password" name="psw" required>
        </div>
+       <re-captcha
+    (resolved)="resolved($event)"
+    siteKey="6LfHglwbAAAAAPoVBi_kK8DFpGSg95QjelATmeOT"
+  ></re-captcha>
        <button class="cta-btn disbale_btn" type="submit" [disabled]="disabled" >Register</button>
        <div class="left_mov">
         <button mat-flat-button type="button"  (click)="loginPopup()">Already registered? Login</button>

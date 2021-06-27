@@ -2,6 +2,34 @@ const db = require("../models");
 const companyTb = db.companyTb;
 const Op = db.Sequelize.Op;
 const bcrypt = require('bcrypt');
+var nodemailer = require('nodemailer');
+
+function sendMail(reciverMail){
+  const myEmail = "dkdev006@gmail.com";
+  const emailPass = "1532587Adova";
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: myEmail,
+      pass: emailPass
+    }
+  });
+  
+  var mailOptions = {
+    from: myEmail,
+    to: reciverMail,
+    subject: 'Sending Email using Node.js',
+    text: 'That was easy!'
+  };
+  
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response + " || " +reciverMail);
+    }
+  });
+}
  
 exports.create = (req, res) => {
      if (!req.body.Company_email) {
@@ -25,12 +53,13 @@ exports.create = (req, res) => {
   
      companyTb.create(companyData)
       .then(data => {
+       sendMail(data.Company_email);
         res.send(data);
       })
       .catch(err => {
         res.status(500).send({
           message:
-            err.message || "Some error occurred while creating the Tutorial."
+            err.message || "Some error occurred while creating."
         });
       });
   };  

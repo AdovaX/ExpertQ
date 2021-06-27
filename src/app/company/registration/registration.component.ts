@@ -18,7 +18,7 @@ export class RegistrationComponent implements OnInit {
   constructor(private CompanyService:CompanyService,private formBuilder: FormBuilder,public dialog: MatDialog) { }
 
   Company: Company[];
-  disabled = false;
+  disabled = true;
 
   ngOnInit(): void {
   //this.company_list();
@@ -29,7 +29,10 @@ export class RegistrationComponent implements OnInit {
 
   });
   }
-
+  resolved(captchaResponse: string) {
+    console.log(`Resolved captcha with response: ${captchaResponse}`); 
+  this.disabled = false;
+  }
   onSubmit() {
     this.submitted = true;    // stop here if form is invalid
     if (this.registerForm.invalid) {
