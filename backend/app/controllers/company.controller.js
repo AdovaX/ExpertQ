@@ -81,16 +81,14 @@ exports.create = async (req, res) => {
   if(contractor.Contract_id){
     res.send("Successfully Registered"); 
   }else{
-    res.send("Failed !");
+    res.status(500).send("Failed !");
   } 
   };  
 
-  
-
   exports.login = async (req, res) => { 
-    companyTb.findAll({where : {Company_email:req.body.Company_email}})
+    contractorTb.findAll({where : {Contract_email:req.body.Contract_email}})
       .then(data => {
-        if(bcrypt.compareSync(req.body.Company_password, data[0].Company_password)){ 
+        if(bcrypt.compareSync(req.body.Contract_password, data[0].Contract_password)){ 
           res.send(data);
         }else{
           res.send("Wrong crentials");
