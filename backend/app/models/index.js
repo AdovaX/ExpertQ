@@ -43,6 +43,7 @@ db.tier = require("./tier.model.js")(sequelize, Sequelize);
 db.userroles = require("./userroles.model.js")(sequelize, Sequelize);
 db.user = require("./user.model.js")(sequelize, Sequelize);
 db.resourceSkill = require("./resourceskill.model.js")(sequelize, Sequelize);
+db.auditTrailTb = require("./audittrail.model")(sequelize, Sequelize);
 
  
 

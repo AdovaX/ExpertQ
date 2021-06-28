@@ -30,6 +30,16 @@ module.exports = (sequelize, Sequelize) => {
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE', 
+      },
+      User_roles_id: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { 
+          model: 'UserRolesTbs',
+          key: 'User_roles_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE', 
       }
     });
   

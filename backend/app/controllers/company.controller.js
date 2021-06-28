@@ -65,6 +65,7 @@ exports.create = async (req, res) => {
 
   async function insertContractor(cid) {
     contractorData.Company_id = cid;
+    contractorData.User_roles_id = 2;
     return await  contractorTb.create(contractorData)
     .then(data => {
       console.log(data);
