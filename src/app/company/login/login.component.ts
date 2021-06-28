@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CompanyService } from '../../Services/company.service';
 import { Company } from '../../class/Company';
+import { Contractor } from '../../class/Contractor';
 import {Router} from "@angular/router"
 import {MatDialog} from '@angular/material/dialog';
 
@@ -32,9 +33,9 @@ export class LoginComponent implements OnInit {
         return;
     }else{
  
-       var loginData = new Company(); 
-       loginData.Company_email = this.loginForm.value.Company_email;
-       loginData.Company_password = this.loginForm.value.Company_password;
+       var loginData = new Contractor(); 
+       loginData.Contract_email = this.loginForm.value.Company_email;
+       loginData.Contract_password = this.loginForm.value.Company_password;
        
        this.CompanyService.companyLogin(loginData).subscribe( data => {
          console.log("-------");

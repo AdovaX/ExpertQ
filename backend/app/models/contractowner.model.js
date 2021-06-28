@@ -11,6 +11,10 @@ module.exports = (sequelize, Sequelize) => {
       Contract_email: {
         type: Sequelize.STRING
       },
+      Contract_password: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
       Contract_designation: {
         type: Sequelize.STRING
       },

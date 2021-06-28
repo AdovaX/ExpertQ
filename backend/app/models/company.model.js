@@ -14,12 +14,8 @@ module.exports = (sequelize, Sequelize) => {
       },
       Company_email: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
         unique: true
-      },
-      Company_password: {
-        type: Sequelize.TEXT,
-        allowNull: false,
       },
       Website: {
         type: Sequelize.STRING

@@ -1,5 +1,6 @@
 const db = require("../models");
 const companyTb = db.companyTb;
+const contractorTb = db.contractownerTb;
 const Op = db.Sequelize.Op;
 const bcrypt = require('bcrypt');
 var nodemailer = require('nodemailer');
@@ -18,10 +19,9 @@ function sendMail(reciverMail){
   var mailOptions = {
     from: myEmail,
     to: reciverMail,
-    subject: 'Sending Email using Node.js',
-    text: 'That was easy!'
+    subject: 'Greetings from ExpertQ',
+    text: 'You have successfully Registred to ExpertQ.'
   };
-  
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
       console.log(error);
@@ -31,41 +31,63 @@ function sendMail(reciverMail){
   });
 }
  
-exports.create = (req, res) => {
-     if (!req.body.Company_email) {
+exports.create = async (req, res) => {
+     if (!req.body.C_full_name) {
       res.status(400).send({
         message: "Content can not be empty!"
       });
       return;
     } 
-    var passwordHash = bcrypt.hashSync(req.body.Company_password , 10);
-     const companyData = {
-        C_short_name: req.body.C_short_name,
-        C_full_name: req.body.C_full_name,
-        Company_email: req.body.Company_email,
-        Company_password:passwordHash ,
-        Website: req.body.Website,
-        No_employees: req.body.No_employees,
-        Founded: req.body.Founded, 
-        About: req.body.About, 
-        Eq_rating: req.body.Eq_rating, 
+    var passwordHash = bcrypt.hashSync(req.body.Contract_password , 10);
+    const companyData = {
+       C_short_name: req.body.C_short_name,
+       C_full_name: req.body.C_full_name,
+       Website: req.body.Website,
+       No_employees: req.body.No_employees,
     };
-  
-     companyTb.create(companyData)
-      .then(data => {
-       sendMail(data.Company_email);
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while creating."
-        });
-      });
+   const contractorData = {
+       Contract_email: req.body.Contract_email,
+       Contract_password: passwordHash,
+       Contract_phone: req.body.Contract_phone,
+       Contract_designation:  req.body.Contract_designation,
+  };
+
+  async function insertCompany() {
+    return await  companyTb.create(companyData)
+    .then(data => {
+      console.log(data);
+        return data;
+    })
+    .catch(err => {
+        return err.message ;
+    });
+  }
+
+  async function insertContractor(cid) {
+    contractorData.Company_id = cid;
+    return await  contractorTb.create(contractorData)
+    .then(data => {
+      console.log(data);
+      sendMail(data.Contract_email);
+      return data;
+    })
+    .catch(err => {
+        return err.message ; 
+    });
+  }
+ 
+  const company =  await insertCompany();
+  const contractor =  await insertContractor(company.Company_id);
+  if(contractor.Contract_id){
+    res.send("Successfully Registered"); 
+  }else{
+    res.send("Failed !");
+  } 
   };  
-       
+
+  
+
   exports.login = async (req, res) => { 
-    
     companyTb.findAll({where : {Company_email:req.body.Company_email}})
       .then(data => {
         if(bcrypt.compareSync(req.body.Company_password, data[0].Company_password)){ 
@@ -80,13 +102,10 @@ exports.create = (req, res) => {
             err.message || "Some error occurred while retrieving tutorials."
         });
       });
-      
   };
- 
  
 
   exports.findAll = (req, res) => {
-    
     companyTb.findAll()
       .then(data => {
         res.send(data);
